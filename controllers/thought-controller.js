@@ -13,7 +13,7 @@ module.exports = {
     //get single thought by id
     async getThoughtById(req, res) {
         try {
-            const dbThoughtById = await Thought.findById(req.params.id)//.populate('thoughts')
+            const dbThoughtById = await Thought.findById(req.params.thoughtId)//.populate('thoughts')
             res.json(dbThoughtById)
         } catch (err) {
             res.status(500).json(err)
