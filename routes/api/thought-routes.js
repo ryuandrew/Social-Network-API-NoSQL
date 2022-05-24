@@ -22,14 +22,17 @@ router
     .get(getThoughtById)
     .put(updateThought);
     
+// api/thoughts/:thoughtId/:userId
 router
     .route('/:thoughtId/:userId')
     .delete(deleteThought);
 
+// api/thoughts/:thoughtId/reaction/:reactionId
 router
     .route('/:thoughtId/reaction/:reactionId')
     .delete(deleteReaction);
 
+// api/thoughts/:thoughtId/reaction
 router
     .route('/:thoughtId/reaction')
     .post(createReaction);
