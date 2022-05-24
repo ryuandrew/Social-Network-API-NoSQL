@@ -1,7 +1,7 @@
 const {Thought, User} = require('../models');
 
 module.exports = {
-    // get all thoughts
+    //get all thoughts
     async getThoughts(req, res) {
         try {
         const dbThought = await Thought.find()
@@ -13,7 +13,7 @@ module.exports = {
     //get single thought by id
     async getThoughtById(req, res) {
         try {
-            const dbThoughtById = await Thought.findById(req.params.id)
+            const dbThoughtById = await Thought.findById(req.params.id)//.populate('thoughts')
             res.json(dbThoughtById)
         } catch (err) {
             res.status(500).json(err)
@@ -45,6 +45,7 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    //delete thought by id
     async deleteThought(req, res) {
         try {
             const deleteThought = await Thought.findOneAndRemove(
@@ -59,6 +60,7 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    //post reaction
     async createReaction(req, res) {
         try {
             const dbReaction = await Thought.findOneAndUpdate(
@@ -71,6 +73,7 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    //delete reaction
     async deleteReaction(req, res) {
         try {
             const dbReaction = await Thought.findOneAndUpdate(
