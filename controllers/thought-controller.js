@@ -41,6 +41,7 @@ module.exports = {
                 req.body,
                 {new: true},
             )
+            res.json(updateThought)
         } catch (err) {
             res.status(500).json(err)
         }
@@ -57,7 +58,7 @@ module.exports = {
             )
             res.json({message: "User's thought has been deleted"})
         } catch (err) {
-            res.status(500).json(err)
+            res.status(500).json(err.message)
         }
     },
     //post reaction

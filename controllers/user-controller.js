@@ -30,7 +30,7 @@ module.exports = {
     updateUser({params, body}, res) {
         User.findOneAndUpdate(
             {_id: params.id},
-            req.body,
+            body,
             {new: true}
         )
             .then((dbUserData) => {
@@ -42,7 +42,7 @@ module.exports = {
     },
     //delete a user
     deleteUser({params}, res) {
-        User.findOneAndDelete({_id: req.params.id})
+        User.findOneAndDelete({_id: params.id})
             .then((user) => 
                 !user
                     ? res.status(404).json({message: 'No user with that ID'})
@@ -53,8 +53,8 @@ module.exports = {
     //add a friend
     addFriend({params}, res) {
         User.findOneAndUpdate(
-            {_id: req.params.id},
-            {$push: {friends: req.params.friendId}},
+            {_id: params.userId},
+            {$push: {friends: params.friendId}},
             {new: true}
         )
             .then((user) => {
@@ -67,8 +67,8 @@ module.exports = {
     //delete a friend
     deleteFriend({params}, res){
         User.findOneAndUpdate(
-            {_id: req.params.id},
-            {$pull: {friends: req.params.friendId}},
+            {_id: params.userId},
+            {$pull: {friends: params.friendId}},
             {new: true}
         )
             .then((user) => 
